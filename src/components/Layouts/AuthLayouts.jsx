@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const AuthLayouts = (props) => {
+const AuthLayout = (props) => {
   const { children, title, type } = props;
   return (
     <div className="flex justify-center min-h-screen items-center">
@@ -10,26 +11,50 @@ const AuthLayouts = (props) => {
           Welcome, Please enter your details
         </p>
         {children}
-        <p className="text-sm mt-5 text-center">
-          {type === "login" ? (
-            <>
-              Sudah punya akun?{" "}
-              <Link to="/register" className="font-bold text-blue-600">
-                Register
-              </Link>
-            </>
-          ) : (
-            <>
-              Belum punya akun?{" "}
-              <Link to="/login" className="font-bold text-blue-600">
-                Login
-              </Link>
-            </>
-          )}
-        </p>
+        <Navigation type={type} />
       </div>
     </div>
   );
 };
 
-export default AuthLayouts;
+AuthLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
+
+const Navigation = ({ type }) => {
+  if (type === "login") {
+    return (
+      <p className="text-sm mt-5 text-center">
+        Don&apos;t have an account?{" "}
+        <Link to="/register" className="font-bold text-blue-600">
+          Register
+        </Link>
+        {" atau "}
+        <Link to="/diskon" className="font-bold text-blue-600">
+          Diskon
+        </Link>
+      </p>
+    );
+  } else {
+    return (
+      <p className="text-sm mt-5 text-center">
+        Already have an account?{" "}
+        <Link to="/login" className="font-bold text-blue-600">
+          Login
+        </Link>
+        {" atau "}
+        <Link to="/diskon" className="font-bold text-blue-600">
+          Diskon
+        </Link>
+      </p>
+    );
+  }
+};
+
+Navigation.propTypes = {
+  type: PropTypes.string.isRequired,
+};
+
+export default AuthLayout;

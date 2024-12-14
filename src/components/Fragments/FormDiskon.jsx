@@ -1,7 +1,7 @@
 import InputForm from "../Elements/Input/Index";
 import Button from "../Elements/Button";
 
-const FormLogin = () => {
+const FormDiskon = () => {
   return (
     <form action="">
       <InputForm
@@ -16,9 +16,9 @@ const FormLogin = () => {
         placeholder="*****"
         name="password"
       />
-      <Button classname="bg-blue-600 w-full">Login</Button>
+      <Button classname="bg-blue-600 w-full">Diskon</Button>
     </form>
   );
 };
 
-export default FormLogin;
+export default FormDiskon;
